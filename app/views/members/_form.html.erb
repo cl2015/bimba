@@ -1,0 +1,33 @@
+<%= form_for @member,:html=>{ :class => "form-signin" } do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <h2 class="form-signin-heading">请您留下联系方式:</h2>
+    <div class="input-prepend">
+      <span class="add-on">@</span><%= f.text_field :name ,{:class =>'span2',:placeholder=>"请输入姓名" }%>
+    </div>
+    <div class="input-prepend" >
+      <span class="add-on">@</span><%= f.text_field :telphone ,{:class =>'span2',:placeholder=>"手机号:139xxx" }%>
+    </div>
+    <div class="input-prepend" >
+      <span class="add-on">@</span><%= select_tag "tutor_id",options_for_select(Tutor.find(:all).collect{ |u| [u.name, u.id] }) %> 请选择导师
+    </div>
+    <div class="input-prepend" >
+      <input class="input-small" type="text" placeholder="随行1" name="follow[f1]">
+      <input class="input-small" type="text" placeholder="随行2" name="follow[f2]">
+      <input class="input-small" type="text" placeholder="随行3" name="follow[f3]">
+      <input class="input-small" type="text" placeholder="随行4" name="follow[f4]">      
+    </div>
+    
+    <button class="btn btn-large btn-primary" type="submit">确认以上信息</button>
+  </fieldset>
+<% end %>

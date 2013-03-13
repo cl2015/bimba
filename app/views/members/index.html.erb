@@ -1,0 +1,28 @@
+<div class="page-header" >
+  <h1>英雄排座次</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>导师</th>
+      <th>领路人</th>
+      <th>姓名</th>
+      <th>手机号</th>
+      <th>给钱了吗？</th>
+      <th>座次</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @members.each do |member| %>
+    <tr>
+      <td><%= member.tutor.name %></td>
+      <td><%= member.leader.name %></td>
+      <td><%= member.name %></td>
+      <td><%= member.telphone %></td>
+      <td><%= member.is_pay %></td>
+      <td><%= link_to 'Destroy', member, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>
+
