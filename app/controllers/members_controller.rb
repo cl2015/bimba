@@ -41,9 +41,21 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(params[:member])
-    @followers = params[:follower]
+    @member.is_leader = true
+    followers = params[:follower]
     respond_to do |format|
       if @member.save
+        @member.leader_id = @member.id
+        @member.save
+        followers.each do |k,f|
+          next if f.length==0
+          st = Member.new(:tutor_id=> @member.tutor_id, 
+            :leader_id =>@member.leader_id, 
+            :name=>f.to_s, 
+            :is_leader => false,
+            :telphone=>@member.telphone)
+          st.save!
+        end
         format.html { redirect_to @member, :notice => 'Member was successfully created.' }
         format.json { render :json => @member, :status => :created, :location => @member }
       else
