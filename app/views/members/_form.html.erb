@@ -12,20 +12,39 @@
   <% end %>
   <fieldset>
     <h2 class="form-signin-heading">请您留下联系方式:</h2>
-    <div class="input-prepend">
-      <span class="add-on">@</span><%= f.text_field :name ,{:class =>'span2',:placeholder=>"请输入姓名" }%>
+    
+    <div class="control-group">
+      <div class="controls">
+        <label class="control-label" for="">请输入姓名:</label>
+        <%= f.text_field :name ,{:class =>'span3',:placeholder=>"请输入姓名" }%>
+      </div>
     </div>
-    <div class="input-prepend" >
-      <span class="add-on">@</span><%= f.text_field :telphone ,{:class =>'span2',:placeholder=>"手机号:139xxx" }%>
+    <div class="control-group">
+      <div class="controls">
+        <label class="control-label" for="">请输入手机号:</label>
+        <%= f.text_field :telphone ,{:class =>'span3',:placeholder=>"手机号:139xxx" }%>
+      </div>
     </div>
-    <div class="input-prepend" >
-      <span class="add-on">@</span><%= f.select :tutor_id,options_for_select(Tutor.find(:all).collect{ |u| [u.name, u.id] }) %> 请选择导师
+    <div class="control-group">
+      <div class="controls">
+        <label class="control-label" for="">请输入邮箱:</label>
+        <%= f.text_field :email ,{:class =>'span3',:placeholder=>"example@example.com" }%>
+      </div>
     </div>
-    <div class="input-prepend" >
-      <input class="input-small" type="text" placeholder="随行1" name="follower[1]">
-      <input class="input-small" type="text" placeholder="随行2" name="follower[2]">
-      <input class="input-small" type="text" placeholder="随行3" name="follower[3]">
-      <input class="input-small" type="text" placeholder="随行4" name="follower[4]">      
+    <div class="control-group">
+      <div class="controls">
+        <label class="control-label" for="">请选择您的邀请人:</label>
+        <%= f.select :tutor_id,options_for_select(Tutor.find(:all).collect{ |u| [u.name, u.id] }) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="">请登记与您同行人的姓名:</label>
+      <div class="controls">
+        <input class="input-small" type="text" placeholder="随行1" name="follower[1]">
+        <input class="input-small" type="text" placeholder="随行2" name="follower[2]">
+        <input class="input-small" type="text" placeholder="随行3" name="follower[3]">
+        <input class="input-small" type="text" placeholder="随行4" name="follower[4]">  
+      </div>
     </div>
     
     <button class="btn btn-large btn-primary" type="submit">确认以上信息</button>
